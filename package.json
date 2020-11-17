@@ -1,0 +1,23 @@
+{
+  "name": "front-end-debt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MartinYounghoonKim/front-end-debt.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MartinYounghoonKim/front-end-debt/issues"
+  },
+  "homepage": "https://github.com/MartinYounghoonKim/front-end-debt#readme",
+  "devDependencies": {
+    "webpack": "^5.5.0",
+    "webpack-cli": "^4.2.0"
+  }
+}
