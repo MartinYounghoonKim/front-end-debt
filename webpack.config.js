@@ -1,4 +1,6 @@
 const path = require("path");
+const CustomWebpackPlugin = require("./CustomWebpackPlugin");
+
 module.exports = {
   mode: "development",
   entry: {
@@ -40,5 +42,8 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  plugins: [
+    new CustomWebpackPlugin(),
+  ]
 }
