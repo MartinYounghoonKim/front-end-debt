@@ -8,3 +8,5 @@ document.addEventListener("DOMContentLoaded", () => {
   `;
 })
 console.log(sum(1, 2));
+console.log(process.env.NODE_ENV);
+console.log("FOO1 ->", FOO1);
