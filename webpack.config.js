@@ -9,7 +9,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   mode: "development",
   entry: {
-    main: "./src/app.js"
+    main: "./app.js"
   },
   output: {
     path: path.resolve("./dist"),
@@ -43,9 +43,11 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        use: [
-          path.resolve("./custom-webpack-loader.js")
-        ]
+        loader: "babel-loader",
+        exclude: /node_modules/
+        // use: [
+        //   path.resolve("./custom-webpack-loader.js")
+        // ]
       }
     ]
   },
