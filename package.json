@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "NODE_ENV=production webpack",
-    "test:customBabel": "npx babel app.js --plugins './custom-babel-plugin.js'"
+    "test:customBabel": "npx babel app.js --plugins './custom-babel-plugin.js'",
+    "lint": "eslint src --fix",
+    "start:dev": "webpack serve"
   },
   "repository": {
     "type": "git",
@@ -40,7 +42,8 @@
     "style-loader": "^2.0.0",
     "url-loader": "^4.1.1",
     "webpack": "^5.5.0",
-    "webpack-cli": "^4.2.0"
+    "webpack-cli": "^4.2.0",
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "webpack-sources": "latest"
