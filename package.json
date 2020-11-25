@@ -7,7 +7,7 @@
     "build": "NODE_ENV=production webpack",
     "test:customBabel": "npx babel app.js --plugins './custom-babel-plugin.js'",
     "lint": "eslint src --fix",
-    "start:dev": "webpack serve"
+    "start:dev": "webpack serve --progress"
   },
   "repository": {
     "type": "git",

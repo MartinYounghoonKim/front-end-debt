@@ -9,7 +9,7 @@ const ESLintPlugin = require("eslint-webpack-plugin");
 module.exports = {
   mode: "development",
   entry: {
-    main: "./app.js",
+    main: "./src/app.js",
   },
   output: {
     path: path.resolve("./dist"),
@@ -51,6 +51,20 @@ module.exports = {
         // ]
       },
     ],
+  },
+  devServer: {
+    // 정적 파일을 제공할 경로 (default: webpack 의 output)
+    // contentBase: path.join(__dirname, "dist"),
+    // 브라우저를 통해 접근하는 경로. (default: "/")
+    // publicPath: "/",
+    // 도메인 설정
+    // host: "local.martin.com",
+    // port: 8080,
+    // 노출될 메시지 레벨, "none", "errors-only", "normal", verbose"
+    stats: "errors-only",
+    // 404 발생 시, index.html 리다이렉트
+    // historyApiFallback: true,
+    overlay: true,
   },
   plugins: [
     // new CustomWebpackPlugin(),
