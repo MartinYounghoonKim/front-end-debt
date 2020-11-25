@@ -6,6 +6,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ESLintPlugin = require("eslint-webpack-plugin");
+const apiMocker = require("connect-api-mocker");
+
 module.exports = {
   mode: "development",
   entry: {
@@ -65,6 +67,12 @@ module.exports = {
     // 404 발생 시, index.html 리다이렉트
     // historyApiFallback: true,
     overlay: true,
+    before: (app) => {
+      app.use(apiMocker("/api", "mocks/api"));
+    },
+    proxy: {
+      "/api": "http://localhost:8081",
+    },
   },
   plugins: [
     // new CustomWebpackPlugin(),
