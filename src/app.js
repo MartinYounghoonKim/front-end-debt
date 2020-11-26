@@ -1,7 +1,7 @@
 import { sum } from "./math";
 import "./app.css";
 import form from "./form";
-import result from "./result";
+// import result from "./result";
 
 let resultElement = null;
 document.addEventListener("DOMContentLoaded", async () => {
@@ -9,9 +9,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   formElement.innerHTML = form.render();
   document.body.appendChild(formElement);
 
-  resultElement = document.createElement("div");
-  resultElement.innerHTML = await result.render();
-  document.body.appendChild(resultElement);
+  import(/* webpackChunkName: "result" */ "./result.js").then(async m => {
+    const result = m.default;
+    resultElement = document.createElement("div");
+    resultElement.innerHTML = await result.render();
+    document.body.appendChild(resultElement);
+  });
 });
 console.log(sum(1, 2));
 console.log(process.env.NODE_ENV);

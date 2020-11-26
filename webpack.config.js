@@ -7,9 +7,28 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ESLintPlugin = require("eslint-webpack-plugin");
 const apiMocker = require("connect-api-mocker");
+const OptimizeCSSAssertsPlugin = require("optimize-css-assets-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
+const mode = process.env.NODE_ENV || "development";
+
+/**
+ * @description
+ * mode가 development 일 경우, 아래의 두개의 플러그인을 사용
+ * 1. NamedChunksPlugin
+ * 2. NamedModulesPlugin
+ *
+ * mode가 production 일 경우, 아래의 일곱개의 플러그인을 사용
+ * 1. FlagDependencyUsagePlugin
+ * 2. FlagIncludedChunksPlugin
+ * 3. ModuleConcatenationPlugin
+ * 4. NoEmitOnErrorsPlugin
+ * 5. OccurrenceOrderPlugin
+ * 6. SideEffectsFalgPlugin
+ * 7. TerserPlugin (javascript 를 난독화 하고, debugger 구문을 제거 및 콘솔 제거 옵션도 제공)
+ */
 module.exports = {
-  mode: "development",
+  mode,
   entry: {
     main: "./src/app.js",
   },
@@ -74,6 +93,32 @@ module.exports = {
       "/api": "http://localhost:8081",
     },
     hot: true,
+  },
+  optimization: {
+    minimizer:
+      mode === "production"
+        ? [
+            new OptimizeCSSAssertsPlugin(),
+            new TerserPlugin({
+              terserOptions: {
+                compress: {
+                  drop_console: true, // console.log 제거
+                },
+              },
+            }),
+          ]
+        : [],
+    splitChunks: {
+      chunks: "all", // 중복 코드 제거 (vendor 안으로 모아버림)
+    },
+  },
+  /**
+   * @description
+   * axios 라이브러리와 같은 써드파티는 이미 빌드 결과물을 제공하기 때문에 빌드 과정을 거칠 필요가 없음.
+   * 이런 파일은 빌드 과정에서 제외
+   */
+  externals: {
+    axios: "axios",
   },
   plugins: [
     // new CustomWebpackPlugin(),
