@@ -23,6 +23,6 @@ console.log("FOO1 ->", FOO1);
 if (module.hot) {
   module.hot.accept("./result", async () => {
     console.log("result 모듈 변경됨");
-    resultElement.innerHTML = await result.render();
+    // resultElement.innerHTML = await result.render();
   });
 }
