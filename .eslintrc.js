@@ -30,4 +30,7 @@ module.exports = {
       },
     ],
   },
+  globals: {
+    FOO1: true,
+  },
 };

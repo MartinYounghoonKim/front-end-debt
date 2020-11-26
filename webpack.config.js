@@ -67,12 +67,13 @@ module.exports = {
     // 404 발생 시, index.html 리다이렉트
     // historyApiFallback: true,
     overlay: true,
-    before: (app) => {
+    before: app => {
       app.use(apiMocker("/api", "mocks/api"));
     },
     proxy: {
       "/api": "http://localhost:8081",
     },
+    hot: true,
   },
   plugins: [
     // new CustomWebpackPlugin(),
