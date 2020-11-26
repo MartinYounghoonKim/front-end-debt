@@ -1,4 +1,4 @@
 {
   "jsxBracketSameLine": true,
-  "arrow-parens": "avoid"
+  "arrowParens": "avoid"
 }
