@@ -115,10 +115,10 @@ module.exports = {
       // minSize: 30 * 1000, // 파일 크기가 30kb 이상일 경우 chunking 대상이 된다.
       // minChunks: 1,       // 1 개 이상의 청크에 포함되어야 함
       cacheGroups: {         // 캐시 그룹은 2개로 나뉨 외부 모듈(defaultVendors)와 내부모듈(default)
-        default: {          
+        default: {
           minChunks: 2,
           priority: -20,
-          resuseExistingChunk: true,
+          reuseExistingChunk: true,
         }
       }
     },
